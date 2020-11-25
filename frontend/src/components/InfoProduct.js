@@ -28,7 +28,7 @@ function InfoProduct(props) {
     // }, [qty]);
 
     const handleAddToCart = () =>{
-        props.history.push("/cart/"+ products.id+ "?qty=" + qty);
+        props.history.push("/cart/"+ products._id+ "?qty=" + qty);
     }
     return (
         <div className="infoProduct">

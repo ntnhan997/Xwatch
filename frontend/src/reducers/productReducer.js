@@ -14,10 +14,6 @@ const productListReducers = (state = { products: [] }, action )=>{
 
 
 const productDetailsReducers = (state = { products: {}}, action) =>{
-    console.log(action.payload);
-    if(action.type === PRODUCT_SUCCESS_DETAILS){
-        console.log(action.payload);
-    }
     switch(action.type){
         case PRODUCT_REQUEST_DETAILS:
             return {loading: true, products: []};

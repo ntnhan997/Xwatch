@@ -6,11 +6,11 @@ import {Link } from 'react-router-dom'
 export default function Product({item},props){
     return(
         <div className="product">
-            <Link to={'/product/' + item.id}>
+            <Link to={'/product/' + item._id}>
                 <img src={item.image} alt="" className="product-image"/>
             </Link>
             <span className="product-series">{item.series}</span>
-            <Link to={'/product/' + item.id}>
+            <Link to={'/product/' + item._id}>
                 <p className="product-name">{item.name}</p>
             </Link>
             <p className="product-price">{item.price} đ</p>

@@ -9,6 +9,14 @@ router.get('/', async (req,res) => {
     res.send(products);
 });
 
+router.get("/:id", async (req,res) => {
+    const id = req.params.id;
+    const product = await Product.findOne({
+      _id: id  
+    });
+    res.send(product);
+})
+
 router.post('/', async(req,res) => {
     const productid = req.body;
     const product = new Product(productid);

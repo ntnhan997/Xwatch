@@ -52,21 +52,25 @@ export default function (props){
                         <TableRow key={index}>
                             <TableCell component="th" scope="row" >
                                 <div className="cart-image">
-                                    <span className="icon-delete" onClick={() => removeCart(item.id)}>
+                                    <span className="icon-delete" onClick={() => removeCart(item._id)}>
                                         <DeleteForeverOutlinedIcon fontSize="large"/>
                                     </span>
-                                    <Link to={"/product/" + item.id}><img src={item.image} alt="cart-not-found"/></Link>
-                                    <Link to={"/product/" + item.id}><p>{item.name}</p></Link>
+                                    <Link to={"/product/" + item._id}><img src={item.image} alt="cart-not-found"/></Link>
+                                    <Link to={"/product/" + item._id}><p>{item.name}</p></Link>
                                 </div>
                             </TableCell>
                             <TableCell align="right" ><span className="cart-price">{item.price}đ</span></TableCell>
                             <TableCell align="right"><span className="cart-qty">{item.qty}</span></TableCell>
                             <TableCell align="right">
-                                <span className="cart-price">
-                                {
-                                    (Number(item.price.replaceAll(".","")) * item.qty).toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,') // 12,345.67
-                                }đ
-                                </span>
+                                {item.price === undefined ? "" : 
+                                    <span className="cart-price">
+                                    {
+                                        (Number(item.price.replaceAll(".","")) * item.qty).toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,') // 12,345.67
+                                    }đ
+                                    </span>
+                                
+                                }
+                                
                             </TableCell>
                         </TableRow>
                     ))}
