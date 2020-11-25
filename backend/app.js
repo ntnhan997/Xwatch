@@ -8,14 +8,12 @@ const productRoute = require('./routes/productRoute');
 const userRoute = require('./routes/userRoute');
 
 
-mongoose.connect(process.env.DB_CONNECTION,{ useNewUrlParser: true, useUnifiedTopology: true  }, () => 
-    console.log("connected to DB!")
-);
+
 
 
 app.use(bodyParser.json());
 
-// app.use('/api/products/', productRoute);
+app.use('/api/productss/', productRoute);
 
 app.use("/api/users/", userRoute);
 
