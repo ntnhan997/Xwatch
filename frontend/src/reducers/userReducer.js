@@ -3,7 +3,7 @@ const { SIGN_IN_REQUEST, SIGN_IN_SUCCESS, SIGN_IN_FAIL } = require("../constants
 
 
 
-const SignInReducer = (state = {userInfo: {}} ,action) => {
+const SignInReducer = (state = {} ,action) => {
     switch(action.type){
         case SIGN_IN_REQUEST:
             return ({loading: true, userInfo: {}});

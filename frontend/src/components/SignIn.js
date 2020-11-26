@@ -3,27 +3,30 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Recaptcha from 'react-grecaptcha';
 import { useDispatch, useSelector } from 'react-redux';
+import {signin} from "../actions/userAction"; 
 
 
-const useStyles = makeStyles({
-    root: {
-      width: '80%',
-    },
-  });
   
 
 
 export default function SignIn (props){
-    const classes = useStyles();
 
+    const useStyles = makeStyles({
+        root: {
+          width: '80%',
+        },
+      });
+
+    const dispatch = useDispatch();
+    const classes = useStyles();
 
     const [check, setCheck] = useState(false);
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
 
     const signIn = useSelector(state => state.signIn);
-    const {loading, error, userInfo} = signIn;
-    const distpatch = useDispatch();
+    const {userInfo} = signIn;
+    
 
     const verifyCallback = res => {
         if(typeof(res) == 'string'){
@@ -42,6 +45,7 @@ export default function SignIn (props){
     }
 
     useEffect(() => {
+        
         if(userInfo){
             props.history.push('/');
         }
@@ -50,13 +54,13 @@ export default function SignIn (props){
         }
     }, [userInfo]);
 
-    const handleSubmit = (e) => {
+    const submitHandler = (e) =>{
         e.preventDefault();
-        distpatch(SignIn(username,password));
+        dispatch(signin(username,password));
     }
 
     return(<div>
-        <form action="/api/signin" method="GET" className="form" onSubmit={handleSubmit}>
+        <form className="form" onSubmit={submitHandler}>
             <ul className="box-form">
                 <li>
                     <TextField id="standard-basic" className={classes.root} label="User Name" size="medium" value={username} onChange={(e) => setUserName(e.target.value) }/>
@@ -81,7 +85,7 @@ export default function SignIn (props){
                     />
                 <br/>
                 <li>
-                    <button disabled={check === false} className="btn-submit" type="submit" onClick={verifyCallback}>Sign In</button>
+                    <button disabled={check === false} className="btn-submit" type="submit">Sign In</button>
                 </li>
             </ul>
         </form>

@@ -28,9 +28,30 @@ router.get('/createadmin', async (req,res) =>{
     }
 });
 
+router.post("/signin", async (req,res) => {
+
+    const user = await User.findOne({
+        username: req.body.username,
+        password: req.body.password
+    })
+
+    if(user){
+        res.send({
+            username: user.username,
+            isAdmin: user.isAdmin
+        })
+    }
+    else{
+        res.status(404).send({ msg: 'Invalid Email or Password.'});
+    }
+});
+
 router.get("/tim", async(req, res) => {
     try {
-        const user = await User.find({});
+        const user = await User.findOne({
+            username: "admin",
+            password: "123"
+        });
         console.log(user);
         res.send(user);
     } catch (error) {

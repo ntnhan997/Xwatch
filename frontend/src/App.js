@@ -35,6 +35,9 @@ function App() {
   const cart = useSelector(state => state.cart);
   const {cartItem} = cart;
 
+  const signIn = useSelector(state => state.signIn);
+  const {userInfo} = signIn;
+
   var items = [
     {
         name: "Random Name #1",
@@ -103,12 +106,18 @@ function App() {
               </span>
             </div>   
             <div className="header-right">
-              <span className="taikhoan"><div className="icon-link"><AccountCircleIcon fontSize="large" className="header-icon"/> Tài Khoản</div>
-              <div className="box-sign">
+              
+               {userInfo ? <Link to="/profile">{userInfo.username}</Link> :
+               <span className="taikhoan"><div className="icon-link"><AccountCircleIcon fontSize="large" className="header-icon"/> Tài Khoản</div>
+                <div className="box-sign">
                   <Link to="/signin/">Đăng Nhập</Link>
                   <Link to='/register/'>Đăng Kí</Link>
-              </div>
-              </span>
+                </div> 
+                </span>
+               }
+                
+              
+              
               |
             <Link to="/cart/" className="icon-link"><span className="header-icon"><ShoppingCartIcon fontSize="large" /><span className="count-cart">{cartItem.length}</span></span> Giỏ Hàng</Link>
             </div>
