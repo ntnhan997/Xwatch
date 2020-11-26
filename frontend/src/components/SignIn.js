@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Recaptcha from 'react-grecaptcha';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const useStyles = makeStyles({
@@ -12,13 +13,17 @@ const useStyles = makeStyles({
   
 
 
-export default function SignIn (){
+export default function SignIn (props){
     const classes = useStyles();
 
 
     const [check, setCheck] = useState(false);
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
+
+    const signIn = useSelector(state => state.signIn);
+    const {loading, error, userInfo} = signIn;
+    const distpatch = useDispatch();
 
     const verifyCallback = res => {
         if(typeof(res) == 'string'){
@@ -36,8 +41,22 @@ export default function SignIn (){
 
     }
 
+    useEffect(() => {
+        if(userInfo){
+            props.history.push('/');
+        }
+        return () => {
+
+        }
+    }, [userInfo]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        distpatch(SignIn(username,password));
+    }
+
     return(<div>
-        <form action="/api/signin" method="GET" className="form">
+        <form action="/api/signin" method="GET" className="form" onSubmit={handleSubmit}>
             <ul className="box-form">
                 <li>
                     <TextField id="standard-basic" className={classes.root} label="User Name" size="medium" value={username} onChange={(e) => setUserName(e.target.value) }/>

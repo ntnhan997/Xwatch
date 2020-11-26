@@ -3,6 +3,7 @@ import {productDetailsReducers, productListReducers} from './reducers/productRed
 import {cartReducer} from './reducers/cartReducer';
 import thunk from 'redux-thunk';
 import Cookie from 'js-cookie';
+import { SignInReducer } from './reducers/userReducer';
 
 const cartItem = Cookie.getJSON("cartItem") || [];
 
@@ -13,7 +14,8 @@ console.log(dem);
 const reducer = combineReducers({
     product: productListReducers,
     detailsProducts: productDetailsReducers,
-    cart: cartReducer
+    cart: cartReducer,
+    signIn: SignInReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
