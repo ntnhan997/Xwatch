@@ -27,6 +27,8 @@ import { useSelector } from 'react-redux';
 import TypeProduct from './components/TypeProduct';
 import AppleSeriesProduct from './components/AppleSeriesProduct';
 import SignIn from './components/SignIn';
+import Register from './components/Register';
+
 var f=false;
 var t = true;
 
@@ -156,6 +158,7 @@ function App() {
               <Route path="/type/:type" component={TypeProduct} exact />
               <Route path="/apple-watch/:series" component={AppleSeriesProduct} exact />
               <Route path="/signin/" component={SignIn} />
+              <Route path="/register" component={Register} />
               <Route component={()=> (<div>Error 404 Not Found</div>)} />
               </Switch>
             </div>

@@ -498,3 +498,30 @@ footer {
     justify-content: center;
     align-items: center;
 }
+
+
+/* Register */
+
+.register {
+    background-color: #fff;
+    margin: 2rem;
+    padding: 0 5rem;
+}
+
+.form-register {
+    padding: 3rem;
+}
+
+.form-register>ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.form-register>ul>li {
+    padding: 1rem;
+}
+
+.btn-register {
+    padding: 1rem 3rem;
+    display: flex;
+}
