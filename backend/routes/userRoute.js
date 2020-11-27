@@ -46,11 +46,28 @@ router.post("/signin", async (req,res) => {
     }
 });
 
+router.post("/register", async (req,res) => {
+    const user = new User({
+        name: req.body.name,
+        username: req.body.username,
+        sex: req.body.sex,
+        password: req.body.password,
+        mail: req.body.mail
+    })
+    if(user){
+        const newUser = await user.save();
+        res.send(user);
+    }
+    else{
+        res.status(201).send({msg: "error Register"});
+    }
+    
+
+});
+
 router.get("/tim", async(req, res) => {
     try {
-        const user = await User.findOne({
-            username: "admin",
-            password: "123"
+        const user = await User.find({
         });
         console.log(user);
         res.send(user);
