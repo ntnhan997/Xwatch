@@ -37,7 +37,10 @@ router.post("/signin", async (req,res) => {
 
     if(user){
         res.send({
+            name: user.name,
             username: user.username,
+            sex: user.sex,
+            mail: user.mail,
             isAdmin: user.isAdmin
         })
     }
@@ -49,8 +52,8 @@ router.post("/signin", async (req,res) => {
 router.post("/register", async (req,res) => {
     const user = new User({
         name: req.body.name,
-        username: req.body.username,
         sex: req.body.sex,
+        username: req.body.username,
         password: req.body.password,
         mail: req.body.mail
     })

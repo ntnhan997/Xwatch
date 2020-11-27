@@ -109,7 +109,7 @@ function App() {
             </div>   
             <div className="header-right">
               
-               {userInfo ? <Link to="/profile">{userInfo.username}</Link> :
+               {userInfo ? <Link to="/profile">{userInfo.name}</Link> :
                <span className="taikhoan"><div className="icon-link"><AccountCircleIcon fontSize="large" className="header-icon"/> Tài Khoản</div>
                 <div className="box-sign">
                   <Link to="/signin/">Đăng Nhập</Link>

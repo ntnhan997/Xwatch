@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
@@ -7,6 +7,8 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../actions/userAction';
 
 const useStyles = makeStyles({
     input: {
@@ -27,7 +29,7 @@ const useStyles = makeStyles({
 });
 
 
-export default function Register() {
+export default function Register(props) {
     const [name,setName] = useState('');
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
@@ -35,11 +37,34 @@ export default function Register() {
     const [sex, setSex] = useState('');
     const [mail, setMail] = useState('');
 
+    const registerUser = useSelector(state => state.registerUser);
+    const {userInfo} = registerUser;
+
     const classes = useStyles();
+
+    const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        if(userInfo){
+            alert("DK thanh cong");
+            console.log("DK thanh cong");
+            props.history.push("/signin");
+        }
+        return () => {
+
+        }
+    },[userInfo])
+
+
+    const handlerSubmit = (e) => {
+        e.preventDefault();
+        dispatch(register(name,sex,username,password,mail));
+    }
 
     return (
         <div className="register">
-            <form className="form-register">
+            <form className="form-register" onSubmit={handlerSubmit}>
                 <ul>
                      <li>
                         <TextField id="standard-basic" label="Họ và Tên" type="text" value={name} onChange={(e) => setName(e.target.value)} className={classes.input}  InputProps={{classes: {
