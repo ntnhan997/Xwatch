@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const userSchema = mongoose.Schema({
     name: {
@@ -27,6 +28,7 @@ const userSchema = mongoose.Schema({
         default: false
     }
 });
+
 
 const userModel = mongoose.model("User", userSchema);
 
