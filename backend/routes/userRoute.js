@@ -2,6 +2,9 @@ const express = require('express');
 const { db } = require('../models/userModel');
 const User = require('../models/userModel');
 const database = require("../utils/db");
+const jwt = require('jsonwebtoken');
+
+const {getToken} = require("../utils/utils");
 
 const router = express.Router();
 
@@ -41,7 +44,8 @@ router.post("/signin", async (req,res) => {
             username: user.username,
             sex: user.sex,
             mail: user.mail,
-            isAdmin: user.isAdmin
+            isAdmin: user.isAdmin,
+            token: getToken(user)
         })
     }
     else{
